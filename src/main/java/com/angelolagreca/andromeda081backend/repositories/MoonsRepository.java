@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface MoonsRepository extends JpaRepository<CelestialObject, UUID> {
+public interface MoonsRepository extends JpaRepository<CelestialObject, Long> {
    Moons findByName(String name);
 }

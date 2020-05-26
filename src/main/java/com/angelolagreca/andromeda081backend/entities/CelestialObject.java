@@ -13,7 +13,12 @@ public abstract class CelestialObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    UUID id;
+    Long id;
     String name;
+
+    @Override
+    public String toString() {
+        return  name ;
+    }
 
 }

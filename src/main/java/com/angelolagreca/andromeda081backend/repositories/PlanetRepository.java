@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface PlanetRepository extends JpaRepository<CelestialObject, UUID> {
+public interface PlanetRepository extends JpaRepository<CelestialObject, Long> {
     public Planet findByName(String name);
     //public Planet findByUUID(UUID uuid);
 }

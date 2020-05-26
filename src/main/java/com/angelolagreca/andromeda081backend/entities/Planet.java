@@ -20,14 +20,15 @@ import java.util.UUID;
 public class Planet extends CelestialObject implements SolarSystemObject {
 
     private int orderToSun;
+
     @OneToMany
     private Collection<Moons> moons;
 
-    public Planet(final UUID id, final String name, final int orderToSun, final Collection<Moons> moons) {
+    public Planet(final Long id, final String name, final int orderToSun) {
         this.id = id;
         this.name = name;
         this.orderToSun = orderToSun;
-        this.moons = moons;
+
     }
 
 }
