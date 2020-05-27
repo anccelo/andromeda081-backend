@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Sun extends CelestialObject implements SolarSystemObject {
+public class Sun extends CelestialObject implements SolarSystemObject, Star {
 
     final private double DiameterInKm = 1_391_000;
 

@@ -7,7 +7,7 @@
     <artifactId>andromeda081-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>andromeda081-backend</name>
-    <description>Demo project for Spring Boot</description>
+    <description>An astronomy project</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
