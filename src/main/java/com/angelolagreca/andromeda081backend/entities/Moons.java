@@ -14,9 +14,9 @@ public class Moons extends CelestialObject implements SolarSystemObject {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    Planet satelliteOf;
+    private Planet satelliteOf;
 
-    public Moons(final Long id, final String name, Planet satelliteOf) {
+    public Moons(final Long id, final String name,final Planet satelliteOf) {
         this.id = id;
         this.name = name;
         this.satelliteOf = satelliteOf;
