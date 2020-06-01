@@ -1,5 +1,7 @@
-package com.angelolagreca.andromeda081backend.entities;
+package com.angelolagreca.andromeda081backend.model.entities;
 
+import com.angelolagreca.andromeda081backend.model.CelestialObject;
+import com.angelolagreca.andromeda081backend.model.SolarSystemObject;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +18,8 @@ public class Moons extends CelestialObject implements SolarSystemObject {
     @JoinColumn(nullable = false)
     private Planet satelliteOf;
 
-    public Moons(final Long id, final String name,final Planet satelliteOf) {
-        this.id = id;
-        this.name = name;
+    public Moons( final String name,final Planet satelliteOf) {
+        super(name);
         this.satelliteOf = satelliteOf;
     }
 }

@@ -1,4 +1,4 @@
-package com.angelolagreca.andromeda081backend.entities;
+package com.angelolagreca.andromeda081backend.model;
 
 import org.springframework.stereotype.Component;
 

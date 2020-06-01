@@ -1,4 +1,4 @@
-package com.angelolagreca.andromeda081backend.entities;
+package com.angelolagreca.andromeda081backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +15,14 @@ public abstract class CelestialObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    protected Long id;
 
     @Column(unique = true)
-    String name;
+    protected String name;
+
+    public CelestialObject(String name){
+        this.name = name;
+    }
 
     @Override
     public String toString() {
