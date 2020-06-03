@@ -1,8 +1,8 @@
 package com.angelolagreca.andromeda081backend;
 
 import com.angelolagreca.andromeda081backend.exception.Andromeda081Exception;
+import com.angelolagreca.andromeda081backend.exception.GenericException;
 import com.angelolagreca.andromeda081backend.model.CelestialObject;
-import com.angelolagreca.andromeda081backend.model.SolarSystemObject;
 import com.angelolagreca.andromeda081backend.model.entities.Moons;
 import com.angelolagreca.andromeda081backend.model.entities.Planet;
 import com.angelolagreca.andromeda081backend.model.entities.Sun;
@@ -62,7 +62,8 @@ public class Andromeda081BackendApplication {
                 celestialObjects.add(planetCollector.collect(planetName));
             }
         } catch (Andromeda081Exception andromeda081Exception) {
-            //todo
+            Andromeda081Exception andromeda081Exception1 = new GenericException("There is a problem.");//todo:
+            // refactoring exception
         }
     }
 
