@@ -19,7 +19,8 @@ public class Moons extends CelestialObject implements SolarSystemObject {
     private Planet satelliteOf;
 
     public Moons( final String name,final Planet satelliteOf) {
-        super(name);
+        super.name = name;
         this.satelliteOf = satelliteOf;
     }
+
 }

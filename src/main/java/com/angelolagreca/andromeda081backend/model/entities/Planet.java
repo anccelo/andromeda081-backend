@@ -3,9 +3,9 @@ package com.angelolagreca.andromeda081backend.model.entities;
 import com.angelolagreca.andromeda081backend.model.CelestialObject;
 import com.angelolagreca.andromeda081backend.model.SolarSystemObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,31 +14,23 @@ import javax.persistence.Table;
 @Table(name = "planet")
 @Getter
 @NoArgsConstructor
+@JsonPropertyOrder({"id", "name", "orderToSun", "perihelionInKm", "aphelionInkm", "averageDistanceInkm",
+        "orbitalPeriodInDays", "equatorialDiameterInKm", "gasPlanet"})
 public class Planet extends CelestialObject implements SolarSystemObject {
 
-    @NonNull
-    private int orderToSun;
-
+    private int orderToSun; //todo: find a best set method
     private double perihelionInKm;
     private double aphelionInkm;
     private double averageDistanceInkm;
-
-    private double OrbitalVelocityInKmPerSec;
-    private double OrbitalPeriodInDays;
-    private double OrbitalLenghtInKm;
-
-    private double EquatorialDiameterInKm;
-
+    private double orbitalVelocityInKmPerSec;
+    private double orbitalPeriodInDays;
+    private double orbitalLenghtInKm;
+    private double equatorialDiameterInKm;
     private int noumberOfMoons;
     //ToDo i cant add collection of moons, i have a error if I do this :
     //Collection<Moons> moonsCollection;
+    boolean isGasPlanet; //todo: find a best set method
 
-    boolean isGasPlanet;
-
-    public Planet(final String name, final int orderToSun) {
-        super(name);
-        this.orderToSun = orderToSun;
-    }
 
     public Planet(
             final @JsonProperty("englishName") String name,
@@ -50,20 +42,37 @@ public class Planet extends CelestialObject implements SolarSystemObject {
             final @JsonProperty("equaRadius") double equatorialDiameterInKm
             //final @JsonProperty("employee_id") int noumberOfMoons,
             /* final @JsonProperty boolean isGasPlanet*/) {
-        super(name);
+        super.name = name;
         this.perihelionInKm = perihelionInKm;
         this.aphelionInkm = aphelionInkm;
         this.averageDistanceInkm = (aphelionInkm + perihelionInKm) / 2;
         // this.OrbitalVelocityInKmPerSec = orbitalVelocityInKmperSec;
-        this.OrbitalPeriodInDays = orbitalPeriodInDays;
+        this.orbitalPeriodInDays = orbitalPeriodInDays;
         // this.OrbitalLenghtInKm = orbitalLenghtInKm;
-        this.EquatorialDiameterInKm = equatorialDiameterInKm * 2;
+        this.equatorialDiameterInKm = equatorialDiameterInKm * 2;
         // this.noumberOfMoons = noumberOfMoons;
         // this.isGasPlanet = isGasPlanet;
-        setOrderToSun();
+        setOrderToSunAndGasPlanetProperty();
     }
 
-    public void setOrderToSun() {
+    @JsonProperty("perihelionInKm")
+    public double getPerihelionInKm() {
+        return perihelionInKm;
+    }
+    @JsonProperty("aphelionInkm")
+    public double getAphelionInkm() {
+        return aphelionInkm;
+    }
+    @JsonProperty("orbitalPeriodInDays")
+    public double getOrbitalPeriodInDays() {
+        return orbitalPeriodInDays;
+    }
+    @JsonProperty("equatorialDiameterInKm")
+    public double getEquatorialDiameterInKm() {
+        return equatorialDiameterInKm;
+    }
+
+    public void setOrderToSunAndGasPlanetProperty() {
         switch (name.toLowerCase()) {
             case "mercury":
                 this.orderToSun = 1;

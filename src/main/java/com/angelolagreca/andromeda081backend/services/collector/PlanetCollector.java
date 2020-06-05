@@ -18,12 +18,13 @@ import static java.lang.String.format;
 public class PlanetCollector {
 
     private static final String URL_PLANET = "https://api.le-systeme-solaire.net/rest/bodies/%s?data=englishName,"
-            + "perihelion,aphelion,equaRadius";
+            + "perihelion,aphelion,equaRadius,sideralOrbit";
+
+    private final ObjectMapper mapper;
 
     @Autowired
     LeSystemeSolaireRestClient leSystemeSolaireRestClient;
 
-    private final ObjectMapper mapper;
 
     public Planet collect(String franceNamePlanet) throws JsonProcessingException, Andromeda081Exception {
         final String formattedUrl = format(URL_PLANET, franceNamePlanet);
@@ -31,4 +32,5 @@ public class PlanetCollector {
         final String jsonResponse = response.body();
         return mapper.readValue(jsonResponse, Planet.class);
     }
+
 }

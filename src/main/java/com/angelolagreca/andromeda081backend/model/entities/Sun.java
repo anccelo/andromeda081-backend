@@ -16,7 +16,7 @@ public class Sun extends CelestialObject implements SolarSystemObject, Star {
     final private double DiameterInKm = 1_391_000;
 
     private Sun(final String name) {
-        super(name);
+        super.name = name;
     }
 
     private static class SunHolder {
