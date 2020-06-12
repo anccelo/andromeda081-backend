@@ -39,7 +39,7 @@ public class Planet extends CelestialObject implements SolarSystemObject {
             // final @JsonProperty("") double orbitalVelocityInKmperSec,
             final @JsonProperty("sideralOrbit") double orbitalPeriodInDays,
             //final @JsonProperty("employee_id") double orbitalLenghtInKm,
-            final @JsonProperty("equaRadius") double equatorialDiameterInKm
+            final @JsonProperty("equaRadius") double equatorialRadiusInKm
             //final @JsonProperty("employee_id") int noumberOfMoons,
             /* final @JsonProperty boolean isGasPlanet*/) {
         super.name = name;
@@ -49,7 +49,7 @@ public class Planet extends CelestialObject implements SolarSystemObject {
         // this.OrbitalVelocityInKmPerSec = orbitalVelocityInKmperSec;
         this.orbitalPeriodInDays = orbitalPeriodInDays;
         // this.OrbitalLenghtInKm = orbitalLenghtInKm;
-        this.equatorialDiameterInKm = equatorialDiameterInKm * 2;
+        this.equatorialDiameterInKm = equatorialRadiusInKm * 2;
         // this.noumberOfMoons = noumberOfMoons;
         // this.isGasPlanet = isGasPlanet;
         setOrderToSunAndGasPlanetProperty();
@@ -59,14 +59,17 @@ public class Planet extends CelestialObject implements SolarSystemObject {
     public double getPerihelionInKm() {
         return perihelionInKm;
     }
+
     @JsonProperty("aphelionInkm")
     public double getAphelionInkm() {
         return aphelionInkm;
     }
+
     @JsonProperty("orbitalPeriodInDays")
     public double getOrbitalPeriodInDays() {
         return orbitalPeriodInDays;
     }
+
     @JsonProperty("equatorialDiameterInKm")
     public double getEquatorialDiameterInKm() {
         return equatorialDiameterInKm;

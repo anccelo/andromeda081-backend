@@ -25,10 +25,9 @@ public class PlanetCollector {
     @Autowired
     LeSystemeSolaireRestClient leSystemeSolaireRestClient;
 
-
     public Planet collect(String franceNamePlanet) throws JsonProcessingException, Andromeda081Exception {
         final String formattedUrl = format(URL_PLANET, franceNamePlanet);
-        final HttpResponse<String> response  = leSystemeSolaireRestClient.get(formattedUrl);
+        final HttpResponse<String> response = leSystemeSolaireRestClient.get(formattedUrl);
         final String jsonResponse = response.body();
         return mapper.readValue(jsonResponse, Planet.class);
     }

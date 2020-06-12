@@ -1,5 +1,6 @@
 package com.angelolagreca.andromeda081backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,11 @@ public abstract class CelestialObject {
 
     @Column(unique = true)
     protected String name;
+
+    @JsonProperty("name")
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public String toString() {
