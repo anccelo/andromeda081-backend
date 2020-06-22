@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "planet")
@@ -28,7 +30,8 @@ public class Planet extends CelestialObject implements SolarSystemObject {
     private double equatorialDiameterInKm;
     private int noumberOfMoons;
     //ToDo i cant add collection of moons, i have a error if I do this :
-    //Collection<Moons> moonsCollection;
+    @OneToMany(mappedBy="satelliteOf")
+    private List<Moons> moonsCollection;
     boolean isGasPlanet; //todo: find a best set method
 
 
@@ -50,7 +53,7 @@ public class Planet extends CelestialObject implements SolarSystemObject {
         this.orbitalPeriodInDays = orbitalPeriodInDays;
         // this.OrbitalLenghtInKm = orbitalLenghtInKm;
         this.equatorialDiameterInKm = equatorialRadiusInKm * 2;
-        // this.noumberOfMoons = noumberOfMoons;
+        // this.noumberOfMoons = moonsCollection.size();
         // this.isGasPlanet = isGasPlanet;
         setOrderToSunAndGasPlanetProperty();
     }

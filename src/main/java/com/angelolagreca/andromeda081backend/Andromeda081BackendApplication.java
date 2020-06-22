@@ -18,9 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -38,9 +36,10 @@ public class Andromeda081BackendApplication {
 
     private final static List<String> PLANETS_NAME = new ArrayList<>(Arrays.asList("mercure", "venus", "terre", "mars",
             "jupiter", "saturne", "uranus", "neptune"));
-    private final static Sun SUN = Sun.getIstance();
+    private static final CelestialObject SUN = Sun.getIstance();
 
-    List<CelestialObject> celestialObjects = new ArrayList<>();
+    Map<String, CelestialObject> celestialObjects = new TreeMap<>() {
+    };
 
     public Andromeda081BackendApplication() throws JsonProcessingException {
     }
@@ -53,22 +52,24 @@ public class Andromeda081BackendApplication {
     public void run() throws JsonProcessingException {
         addItemsToCelestialObjects();
         persisteItems();
+        final CelestialObject europe = new Moons("europa", (Planet) celestialObjects.get("jupiter"));
+        planetRepository.save(europe);
     }
 
     public void addItemsToCelestialObjects() throws JsonProcessingException {
-        celestialObjects.add(SUN);
+        celestialObjects.put(SUN.getName(), SUN);
         try {
             for (String planetName : PLANETS_NAME) {
-                celestialObjects.add(planetCollector.collect(planetName));
+                celestialObjects.put(planetName, planetCollector.collect(planetName));
             }
         } catch (Andromeda081Exception andromeda081Exception) {
-            Andromeda081Exception andromeda081Exception1 = new GenericException("There is a problem.");//todo:
-            // refactoring exception
+            Andromeda081Exception andromeda081Exception1 = new GenericException("There is a problem.");
+            // todo refactoring exception
         }
     }
 
     public void persisteItems() {
-        for (CelestialObject celestialObject : celestialObjects) {
+        for (CelestialObject celestialObject : celestialObjects.values()) {
             if (celestialObject instanceof Planet) planetRepository.save(celestialObject);
             if (celestialObject instanceof Moons) {
                 moonsRepository.save(celestialObject);

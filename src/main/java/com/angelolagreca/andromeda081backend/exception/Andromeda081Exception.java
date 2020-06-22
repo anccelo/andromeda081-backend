@@ -1,6 +1,6 @@
 package com.angelolagreca.andromeda081backend.exception;
 
-public class Andromeda081Exception extends Exception {
+public abstract class Andromeda081Exception extends Exception {
 
     public Andromeda081Exception(final String message) {
         super(message);
