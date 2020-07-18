@@ -8,4 +8,4 @@ The first element developed (in progress in May 2020) are the technical data she
 with data that is easy to understand and which can respond to the smallest curiosities of people without specific 
 knowledge of astronomy.
 
-For celestial objects data it's consume tha api to : https://api.le-systeme-solaire.net/
+For celestial objects data it's consume tha api to :  https://api.le-systeme-solaire.net/
