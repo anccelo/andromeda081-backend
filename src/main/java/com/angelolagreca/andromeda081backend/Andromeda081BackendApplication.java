@@ -52,7 +52,7 @@ public class Andromeda081BackendApplication {
     public void run() throws JsonProcessingException {
         addItemsToCelestialObjects();
         persisteItems();
-        final CelestialObject europe = new Moons("europa", (Planet) celestialObjects.get("jupiter"));
+        final CelestialObject europe = new Moons("europa", (Planet) celestialObjects.get("jupiter"), 10, 10,10,10,10);
         planetRepository.save(europe);
     }
 

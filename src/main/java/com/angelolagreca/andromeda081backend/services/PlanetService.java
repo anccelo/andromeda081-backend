@@ -17,7 +17,7 @@ public class PlanetService {
     @Autowired
     PlanetRepository planetRepository;
 
-    public List<Planet> getPlanetsServices() {
+    public List<Planet> getPlanetsService() {
         List<CelestialObject> AllCelestialObjects = planetRepository.findAll();
         return AllCelestialObjects.stream().filter(celObj -> celObj instanceof Planet).map(p -> (Planet) p)
                 .collect(Collectors.toList());

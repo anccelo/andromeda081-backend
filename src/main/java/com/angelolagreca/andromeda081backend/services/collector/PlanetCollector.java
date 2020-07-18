@@ -17,8 +17,7 @@ import static java.lang.String.format;
 @Component
 public class PlanetCollector {
 
-    private static final String URL_PLANET = "https://api.le-systeme-solaire.net/rest/bodies/%s?data=englishName,"
-            + "perihelion,aphelion,equaRadius,sideralOrbit";
+    private static final String URL_PLANET = "https://api.le-systeme-solaire.net/rest/bodies/%s";
 
     private final ObjectMapper mapper;
 

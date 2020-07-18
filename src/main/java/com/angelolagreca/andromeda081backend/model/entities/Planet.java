@@ -17,30 +17,36 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @JsonPropertyOrder({"id", "name", "orderToSun", "perihelionInKm", "aphelionInkm", "averageDistanceInkm",
-        "orbitalPeriodInDays", "equatorialDiameterInKm", "gasPlanet"})
+        "orbitalPeriodInDays", "sideralRotationInDays", "equatorialDiameterInKm", "gasPlanet"})
 public class Planet extends CelestialObject implements SolarSystemObject {
 
     private int orderToSun; //todo: find a best set method
     private double perihelionInKm;
     private double aphelionInkm;
+    private double densityInGmCm3;
+    private double gravityInMPerS2;
     private double averageDistanceInkm;
     private double orbitalVelocityInKmPerSec;
     private double orbitalPeriodInDays;
+    private double sideralRotationInDays;
     private double orbitalLenghtInKm;
     private double equatorialDiameterInKm;
     private int noumberOfMoons;
-    //ToDo i cant add collection of moons, i have a error if I do this :
-    @OneToMany(mappedBy="satelliteOf")
+    @OneToMany(mappedBy = "satelliteOf")
     private List<Moons> moonsCollection;
     boolean isGasPlanet; //todo: find a best set method
 
 
     public Planet(
+            final @JsonProperty("id") String franceName,
             final @JsonProperty("englishName") String name,
             final @JsonProperty("perihelion") double perihelionInKm,
             final @JsonProperty("aphelion") double aphelionInkm,
+            final @JsonProperty("density") double densityInGmCm3,
+            final @JsonProperty("gravity") double gravityInMPerS2,
             // final @JsonProperty("") double orbitalVelocityInKmperSec,
             final @JsonProperty("sideralOrbit") double orbitalPeriodInDays,
+            final @JsonProperty("sideralRotation") double sideralRotationInDays,
             //final @JsonProperty("employee_id") double orbitalLenghtInKm,
             final @JsonProperty("equaRadius") double equatorialRadiusInKm
             //final @JsonProperty("employee_id") int noumberOfMoons,
@@ -48,9 +54,12 @@ public class Planet extends CelestialObject implements SolarSystemObject {
         super.name = name;
         this.perihelionInKm = perihelionInKm;
         this.aphelionInkm = aphelionInkm;
+        this.densityInGmCm3 = densityInGmCm3;
+        this.gravityInMPerS2 = gravityInMPerS2;
         this.averageDistanceInkm = (aphelionInkm + perihelionInKm) / 2;
         // this.OrbitalVelocityInKmPerSec = orbitalVelocityInKmperSec;
         this.orbitalPeriodInDays = orbitalPeriodInDays;
+        this.sideralRotationInDays = sideralRotationInDays;
         // this.OrbitalLenghtInKm = orbitalLenghtInKm;
         this.equatorialDiameterInKm = equatorialRadiusInKm * 2;
         // this.noumberOfMoons = moonsCollection.size();
@@ -63,6 +72,16 @@ public class Planet extends CelestialObject implements SolarSystemObject {
         return perihelionInKm;
     }
 
+    @JsonProperty("densityInGmCm3")
+    public double getDensityInGmCm3() {
+        return densityInGmCm3;
+    }
+
+    @JsonProperty("gravityInMPerS2")
+    public double getGravityInMPerS2() {
+        return gravityInMPerS2;
+    }
+
     @JsonProperty("aphelionInkm")
     public double getAphelionInkm() {
         return aphelionInkm;
@@ -73,10 +92,16 @@ public class Planet extends CelestialObject implements SolarSystemObject {
         return orbitalPeriodInDays;
     }
 
+    @JsonProperty("sideralRotationInDays")
+    public double getSideralRotationInDays() {
+        return sideralRotationInDays;
+    }
+
     @JsonProperty("equatorialDiameterInKm")
     public double getEquatorialDiameterInKm() {
         return equatorialDiameterInKm;
     }
+
 
     public void setOrderToSunAndGasPlanetProperty() {
         switch (name.toLowerCase()) {
