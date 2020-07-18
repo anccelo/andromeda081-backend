@@ -52,11 +52,10 @@ public class Andromeda081BackendApplication {
     public void run() throws JsonProcessingException {
         addItemsToCelestialObjects();
         persisteItems();
-        final CelestialObject europe = new Moons("europa", (Planet) celestialObjects.get("jupiter"), 10, 10,10,10,10);
-        planetRepository.save(europe);
     }
 
     public void addItemsToCelestialObjects() throws JsonProcessingException {
+        // moons must always be added after the planets
         celestialObjects.put(SUN.getName(), SUN);
         try {
             for (String planetName : PLANETS_NAME) {
@@ -66,6 +65,8 @@ public class Andromeda081BackendApplication {
             Andromeda081Exception andromeda081Exception1 = new GenericException("There is a problem.");
             // todo refactoring exception
         }
+        final CelestialObject europe = new Moons("europa", (Planet) celestialObjects.get("jupiter"), 10, 10,10,10,10);
+        celestialObjects.put("europe", europe);
     }
 
     public void persisteItems() {

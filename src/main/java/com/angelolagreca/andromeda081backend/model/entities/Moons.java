@@ -5,16 +5,13 @@ import com.angelolagreca.andromeda081backend.model.SolarSystemObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 public class Moons extends CelestialObject implements SolarSystemObject {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinColumn(name = "SATELLITE_OF_ID")
     private Planet satelliteOf;
 
