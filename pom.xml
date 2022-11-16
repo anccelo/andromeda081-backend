@@ -19,7 +19,7 @@
     <properties>
         <java.version>11</java.version>
 
-        <jackson.version>2.10.2</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <assertj.version>3.15.0</assertj.version>
     </properties>
 
